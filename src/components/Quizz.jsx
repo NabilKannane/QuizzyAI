@@ -1,9 +1,10 @@
 import React, { useContext, useState , useEffect} from 'react';
 import { QuizContext } from '../context/QuizContext';
 import logo from "../biglogo.png";
+import Loader from './Loader'; 
 
 const Quiz = () => {
-  const { quizzes } = useContext(QuizContext);
+  const { quizzes , isLoading} = useContext(QuizContext);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -44,6 +45,11 @@ const Quiz = () => {
       setIsSubmitted(false);
     }
   };
+
+  if (isLoading) {
+    return <Loader/>;
+  }
+
 
   if (!quizzes.quiz) {
     return (

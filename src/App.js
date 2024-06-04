@@ -11,7 +11,6 @@ function App() {
         <div className=" md:w-1/3 bg-neutral-950  p-4 flex flex-col items-center">
           <img src={logo} alt="Logo" className="w-60 mt-4 mb-16" />
           <p>Makes quizzes from uploaded files in the cloud.</p>
-
           <Upload />
         </div>
 

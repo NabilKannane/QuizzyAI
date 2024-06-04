@@ -8,7 +8,7 @@ const URI_API ="https://a597a646-ce39-4c5c-a91a-0746232a7139-00-1oqntioxdcqrs.wo
 // const URI_API ="https://4fd9-102-96-30-62.ngrok-free.app/generate_questions/"
 
 const Upload = () => {
-  const { setQuizzes } = useContext(QuizContext);
+  const { setQuizzes ,setIsLoading } = useContext(QuizContext);
   const [fileName, setFileName] = useState("Upload file here");
   const [numQuestions, setNumQuestions] = useState();
   const [topics, setTopics] = useState("all");
@@ -54,6 +54,7 @@ const Upload = () => {
       return;
     }
     setLoading(true);
+    setIsLoading(true);
 
     const formData = new FormData();
     formData.append("num_questions", numQuestions);
@@ -75,7 +76,7 @@ const Upload = () => {
       setUploadSuccess(true);
       setFileName("Upload file here");
       setLoading(false);
-
+      setIsLoading(false);
       
       setTimeout(() => {
         setUploadSuccess(false);
@@ -84,6 +85,7 @@ const Upload = () => {
       console.error("Error uploading file:", error);
       setError("Error uploading file. Please try again.");
       setLoading(false);
+      setIsLoading(false);
     }
   };
 
