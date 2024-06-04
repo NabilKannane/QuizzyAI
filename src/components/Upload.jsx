@@ -103,7 +103,7 @@ const Upload = () => {
   return (
     <>
       <input
-        className="mt-8 h-12 w-4/5 rounded-md bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] px-3 py-2 text-slate-200 transition-all duration-500 placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none"
+        className="mt-8 h-12 w-4/5 shadow-slate-800 shadow-md rounded-md bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] px-3 py-2 text-slate-200 transition-all duration-500 placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none"
         placeholder="Topic"
         onChange={handleTopics}
       />
@@ -143,13 +143,13 @@ const Upload = () => {
         {error && <p className="text-red-500">{error}</p>}
         <div className="flex justify-between mt-4 gap-4">
           <button
-            className="transition-background inline-flex h-12 items-center justify-center rounded-md  border border-gray-800 bg-gradient-to-r from-neutral-950 via-[#08040d] to-[#873bec] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
+            className=" shadow-slate-800 shadow-md transition-background inline-flex h-12 items-center justify-center rounded-md  border border-gray-800 bg-gradient-to-r from-neutral-950 via-[#08040d] to-[#873bec] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
             onClick={handleReset}
           >
             <FaRotate />
           </button>
           <button
-            className="transition-background inline-flex h-12 items-center justify-center rounded-md border border-gray-800 bg-gradient-to-r from-neutral-950 via-[#08040d] to-[#873bec] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
+            className="shadow-slate-800 shadow-md transition-background inline-flex h-12 items-center justify-center rounded-md border border-gray-800 bg-gradient-to-r from-neutral-950 via-[#08040d] to-[#873bec] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
             onClick={handleUpload}
             disabled={loading}
           >

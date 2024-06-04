@@ -30,13 +30,13 @@ function NumberInput({ onChange, numberqst }) {
     <div className="w-full h-full flex flex-col justify-center items-center">
       <div className="relative flex items-center">
         <button
-          className="bg-neutral-900 text-white rounded-l-md px-4 py-2"
+          className="bg-neutral-900 shadow-slate-800 shadow-md  text-white rounded-l-md px-4 py-2"
           onClick={decrement}
         >
           -
         </button>
         <input
-          className="h-12 w-4/5 pl-12 pr-12 rounded-none bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] text-center text-slate-200 transition-all duration-500 placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none "
+          className="h-12 w-4/5 pl-12 pr-12 shadow-slate-800 shadow-md rounded-none bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] text-center text-slate-200 transition-all duration-500 placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none "
           placeholder="Number of Questions"
           type="number"
           required="true"
@@ -45,7 +45,7 @@ function NumberInput({ onChange, numberqst }) {
           style={{ appearance: "textfield" }}
         />
         <button
-          className="bg-neutral-900 text-white rounded-r-md px-4 py-2"
+          className="bg-neutral-900 shadow-slate-800 shadow-md  text-white rounded-r-md px-4 py-2"
           onClick={increment}
         >
           +
