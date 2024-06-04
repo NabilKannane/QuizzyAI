@@ -1,10 +1,10 @@
-import React, { useContext, useState , useEffect} from 'react';
-import { QuizContext } from '../context/QuizContext';
+import React, { useContext, useState, useEffect } from "react";
+import { QuizContext } from "../context/QuizContext";
 import logo from "../biglogo.png";
-import Loader from './Loader'; 
+import Loader from "./Loader";
 
 const Quiz = () => {
-  const { quizzes , isLoading} = useContext(QuizContext);
+  const { quizzes, isLoading } = useContext(QuizContext);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -15,10 +15,9 @@ const Quiz = () => {
     setIsSubmitted(false);
   }, [quizzes]);
 
-  
   const handleSubmit = () => {
     if (!selectedOption) {
-      alert('Please select an option before submitting.');
+      alert("Please select an option before submitting.");
       return;
     }
     setIsSubmitted(true);
@@ -47,30 +46,29 @@ const Quiz = () => {
   };
 
   if (isLoading) {
-    return <Loader/>;
+    return <Loader />;
   }
-
 
   if (!quizzes.quiz) {
     return (
-      <div className='w-full h-full '>
-    <div className='flex flex-col p-28 justify-center items-center text-2xl'>
-      <img src={logo} alt="Logo" className="w-48 mb-4" />
-    <h3 className='text-2xl mb-4'>Welcome to QuizzyAI</h3>
-    <p className='text-xl font-thin'>The ideal platform to test your knowledge and have fun.</p>
-  </div>
+      <div className="w-full h-full ">
+        <div className="flex flex-col p-28 justify-center items-center text-2xl">
+          <img src={logo} alt="Logo" className="w-48 mb-4" />
+          <h3 className="text-2xl mb-4">Welcome to QuizzyAI</h3>
+          <p className="text-xl font-thin">
+            The ideal platform to test your knowledge and have fun.
+          </p>
+        </div>
       </div>
-
     );
   }
   const num_max = quizzes.num_questions;
   const currentQuestion = quizzes.quiz[currentQuestionIndex];
   const correctAnswer = currentQuestion.answer;
 
-
-if (!currentQuestion) {
-  return <div>Loading...</div>;
-}
+  if (!currentQuestion) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="flex flex-col w-full items-center justify-center h-full">
@@ -86,13 +84,23 @@ if (!currentQuestion) {
             const optionText = Object.values(option)[0];
             const isSelected = selectedOption === optionText;
             const isCorrectOption = optionText === correctAnswer;
-            const optionStyle = isSelected
-              ? isSubmitted
-                ? isCorrectOption
-                  ? 'bg-green-500'
-                  : 'bg-red-500'
-                : 'bg-violet-300'
-              : 'bg-neutral-900';
+
+            let optionStyle = "bg-neutral-900";
+            if (isSelected) {
+              optionStyle = "bg-violet-500";
+            }
+            if (isSubmitted) {
+              if (isSelected && isCorrectOption) {
+                optionStyle = "bg-green-500";
+              }
+              if (isSelected && !isCorrectOption) {
+                optionStyle = "bg-red-500";
+              }
+
+              if (isCorrectOption) {
+                optionStyle = "bg-green-500";
+              }
+            }
 
             return (
               <div
