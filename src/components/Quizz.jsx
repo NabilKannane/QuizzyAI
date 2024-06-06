@@ -46,7 +46,9 @@ const Quiz = () => {
   };
 
   if (isLoading) {
-    return <Loader />;
+    return (
+<Loader />
+    );
   }
 
   if (!quizzes.quiz) {
