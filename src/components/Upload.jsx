@@ -103,16 +103,16 @@ const Upload = () => {
   };
 
   return (
-    <>
+    <div className=" h-100 ">
       <input
-        className="mt-8 h-12 w-4/5 shadow-slate-800 shadow-md rounded-md bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] px-3 py-2 text-slate-200 transition-all duration-500 placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none"
+        className="mt-8 mb-6 h-12 w-full text-center shadow-slate-800 shadow-md rounded-md bg-[linear-gradient(#000,#000),linear-gradient(to_right,#334454,#334454)] px-3 py-2 text-slate-200 transition-all duration-500 placeholder:text-slate-500 focus:bg-[linear-gradient(#000,#000),linear-gradient(to_right,#c7d2fe,#8678f9)] focus:outline-none"
         placeholder="Topic"
         onChange={handleTopics}
       />
       <NumberInput onChange={onChangeNumQuestions} numberqst={numQuestions} />
 
-      <div className="flex flex-col items-center mt-4 mb-16">
-        <div className="relative w-24 h-24 rounded-full border-2 border-violet-300 flex justify-center items-center overflow-hidden shadow-[0px_0px_100px_rgb(161,3,252)_inset_0px_0px_10px_rgb(161,3,252)_0px_0px_5px_rgb(255,255,255)] animate-flicker">
+      <div className="flex flex-col items-center mt-4 ">
+        <div className="relative mt-8  w-24 h-24 rounded-full border-2 border-violet-300 flex justify-center items-center overflow-hidden shadow-[0px_0px_100px_rgb(161,3,252)_inset_0px_0px_10px_rgb(161,3,252)_0px_0px_5px_rgb(255,255,255)] animate-flicker">
           <input
             className="absolute opacity-0 w-full h-full cursor-pointer"
             type="file"
@@ -138,12 +138,12 @@ const Upload = () => {
             <polyline points="16 16 12 12 8 16"></polyline>
           </svg>
         </div>
-        <p className="mt-4 text-violet-300 text-center text-sm ">{fileName}</p>
+        <p className="mt-4 py-4  text-violet-300 text-center text-sm ">{fileName}</p>
         {uploadSuccess && (
           <p className="text-green-500">File uploaded successfully!</p>
         )}
         {error && <p className="text-red-500">{error}</p>}
-        <div className="flex justify-between mt-4 gap-4">
+        <div className="flex justify-between mt-4 mb-8 gap-4">
           <button
             className=" shadow-slate-800 shadow-md transition-background inline-flex h-12 items-center justify-center rounded-md  border border-gray-800 bg-gradient-to-r from-neutral-950 via-[#08040d] to-[#873bec] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
             onClick={handleReset}
@@ -159,7 +159,7 @@ const Upload = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

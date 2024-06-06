@@ -27,7 +27,7 @@ function NumberInput({ onChange, numberqst }) {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center">
       <div className="relative flex items-center">
         <button
           className="bg-neutral-900 shadow-slate-800 shadow-md  text-white rounded-l-md px-4 py-2"

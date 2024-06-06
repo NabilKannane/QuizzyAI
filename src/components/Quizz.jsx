@@ -72,7 +72,7 @@ const Quiz = () => {
 
   return (
     <div className="flex flex-col w-full items-center justify-center h-full">
-      <div className="p-6 text-center w-11/12 md:w-1/2 py-16">
+      <div className="p-6 text-center w-11/12 md:w-1/2">
         <h2 className="text-xl font-semibold">
           Question {currentQuestionIndex + 1} - {num_max}
         </h2>
@@ -140,6 +140,7 @@ const Quiz = () => {
               </svg>
             </div>
           </button>
+              
           <button
             className="relative h-12 overflow-hidden rounded bg-neutral-950 px-5 py-2.5 text-white transition-all duration-200 hover:bg-violet-900 hover:ring-offset-2 active:ring-2 active:ring-neutral-800"
             onClick={handleSubmit}
@@ -147,7 +148,7 @@ const Quiz = () => {
           >
             Confirm
           </button>
-          <button
+ <button
             className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-neutral-950 font-medium text-neutral-200 hover:bg-green-900 transition-all duration-300 hover:w-32"
             onClick={handleNextQuestion}
             disabled={currentQuestionIndex === quizzes.quiz.length - 1}
