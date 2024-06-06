@@ -79,9 +79,3 @@
 .animate-iconflicker {
   animation: iconflicker 5s linear infinite;
 }
-
-/* ##############################3 */
-.incorrect-answer {
-  /* Ajoutez ici les styles pour le div contenant la réponse correcte */
-  background-color: yellow;
-}
