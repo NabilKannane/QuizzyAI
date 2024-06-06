@@ -53,7 +53,7 @@ const Quiz = () => {
 
   if (!quizzes.quiz) {
     return (
-      <Home/>
+      <Home/> 
     );
   }  
   const num_max = quizzes.num_questions;
