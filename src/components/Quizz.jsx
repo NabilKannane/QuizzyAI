@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { QuizContext } from "../context/QuizContext";
 import Loader from "./Loader";
-import Home from "./Home"
+import Home from "./Home";
+import ErrorCard from "./ErrorCard"
 
 const Quiz = () => {
-  const { quizzes, isLoading } = useContext(QuizContext);
+  
+  const { quizzes, isLoading , error } = useContext(QuizContext);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -48,6 +50,14 @@ const Quiz = () => {
   if (isLoading) {
     return (
 <Loader />
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-screen ">
+        <ErrorCard textError={error}/>
+      </div>
     );
   }
 

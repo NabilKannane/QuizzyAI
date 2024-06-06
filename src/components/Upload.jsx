@@ -8,12 +8,12 @@ const URI_API ="https://a597a646-ce39-4c5c-a91a-0746232a7139-00-1oqntioxdcqrs.wo
 // const URI_API ="https://4fd9-102-96-30-62.ngrok-free.app/generate_questions/"
 
 const Upload = () => {
-  const { setQuizzes ,setIsLoading } = useContext(QuizContext);
+  const { setQuizzes ,setIsLoading , setError} = useContext(QuizContext);
   const [fileName, setFileName] = useState("Upload file here");
   const [numQuestions, setNumQuestions] = useState();
   const [topics, setTopics] = useState("all");
   const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [error, setError] = useState(null);
+  const [errorUpload, setErrorUpload] = useState(null);
   const [loading, setLoading] = useState(false);
   const [filebase64, setfilebase64] = useState(null);
 
@@ -26,10 +26,10 @@ const Upload = () => {
     const file = event.target.files[0];
     if (file) {
       if (file.type !== "application/pdf") {
-        setError("Please upload a PDF file.");
+        setErrorUpload("Please upload a PDF file.");
       } else {
         setFileName(file.name);
-        setError(null);
+        setErrorUpload(null);
 
         const reader = new FileReader();
         reader.onload = () => {
@@ -41,7 +41,7 @@ const Upload = () => {
       }
     } else {
       setFileName("Upload file here");
-      setError(null);
+      setErrorUpload(null);
     }
   };
 
@@ -50,7 +50,7 @@ const Upload = () => {
     const file = fileInput.files[0];
 
     if (!file) {
-      setError("Please select a file to upload.");
+      setErrorUpload("Please select a file to upload.");
       return;
     }
     setLoading(true);
@@ -77,13 +77,15 @@ const Upload = () => {
       setFileName("Upload file here");
       setLoading(false);
       setIsLoading(false);
+      setError(null); 
       
       setTimeout(() => {
         setUploadSuccess(false);
       }, 3000);
     } catch (error) {
       console.error("Error uploading file:", error);
-      setError("Error uploading file. Please try again.");
+      setErrorUpload("Error uploading file. Please try again.");
+      setError(`Error uploading file: ${error.response.data}`);
       setLoading(false);
       setIsLoading(false);
     }
@@ -92,7 +94,7 @@ const Upload = () => {
   const handleReset = () => {
     setFileName("Upload file here");
     setUploadSuccess(false);
-    setError(null);
+    setErrorUpload(null);
     const fileInput = document.querySelector('input[type="file"]');
     fileInput.value = "";
   };
@@ -142,7 +144,7 @@ const Upload = () => {
         {uploadSuccess && (
           <p className="text-green-500">File uploaded successfully!</p>
         )}
-        {error && <p className="text-red-500">{error}</p>}
+        {errorUpload && <p className="text-red-500">{errorUpload}</p>}
         <div className="flex justify-between mt-4 mb-8 gap-4">
           <button
             className=" shadow-slate-800 shadow-md transition-background inline-flex h-12 items-center justify-center rounded-md  border border-gray-800 bg-gradient-to-r from-[#111111] via-neutral-900 to-[#8c2fff] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
