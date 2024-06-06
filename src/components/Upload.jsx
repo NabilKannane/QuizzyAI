@@ -145,7 +145,7 @@ const Upload = () => {
         {error && <p className="text-red-500">{error}</p>}
         <div className="flex justify-between mt-4 mb-8 gap-4">
           <button
-            className=" shadow-slate-800 shadow-md transition-background inline-flex h-12 items-center justify-center rounded-md  border border-gray-800 bg-gradient-to-r from-[#111111] via-neutral-950 to-[#8c2fff] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
+            className=" shadow-slate-800 shadow-md transition-background inline-flex h-12 items-center justify-center rounded-md  border border-gray-800 bg-gradient-to-r from-[#111111] via-neutral-900 to-[#8c2fff] bg-[length:200%_200%] bg-[0%_0%] px-6 font-medium hover:text-white duration-500 hover:bg-[100%_200%] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50"
             onClick={handleReset}
           >
             <FaRotate />
