@@ -14,7 +14,7 @@ function App() {
           <Upload />
         </div>
 
-        <div className="w-full h-screen md:w-2/3 ">
+        <div className="w-full h-screen flex justify-center items-center md:w-2/3 ">
           <Quizz />
         </div>
       </div>

@@ -8,7 +8,7 @@ const URI_API ="https://a597a646-ce39-4c5c-a91a-0746232a7139-00-1oqntioxdcqrs.wo
 // const URI_API ="https://4fd9-102-96-30-62.ngrok-free.app/generate_questions/"
 
 const Upload = () => {
-  const { setQuizzes ,setIsLoading , setError} = useContext(QuizContext);
+  const { setQuizzes ,setIsLoading , setError , setFinish} = useContext(QuizContext);
   const [fileName, setFileName] = useState("Upload file here");
   const [numQuestions, setNumQuestions] = useState();
   const [topics, setTopics] = useState("all");
@@ -16,6 +16,7 @@ const Upload = () => {
   const [errorUpload, setErrorUpload] = useState(null);
   const [loading, setLoading] = useState(false);
   const [filebase64, setfilebase64] = useState(null);
+
 
   const onChangeNumQuestions = (num) => {
     setNumQuestions(num);
@@ -53,6 +54,8 @@ const Upload = () => {
       setErrorUpload("Please select a file to upload.");
       return;
     }
+    setFinish(false)
+
     setLoading(true);
     setIsLoading(true);
 
@@ -95,13 +98,13 @@ const Upload = () => {
     setFileName("Upload file here");
     setUploadSuccess(false);
     setErrorUpload(null);
+    setNumQuestions(0)
     const fileInput = document.querySelector('input[type="file"]');
     fileInput.value = "";
   };
 
   const handleTopics = (event) => {
     setTopics(event.target.value);
-    console.log(topics);
   };
 
   return (
@@ -113,7 +116,7 @@ const Upload = () => {
       />
       <NumberInput onChange={onChangeNumQuestions} numberqst={numQuestions} />
 
-      <div className="flex flex-col items-center mt-4 ">
+      <div className="flex flex-col items-center mt-4">
         <div className="relative mt-8  w-24 h-24 rounded-full border-2 border-violet-300 flex justify-center items-center overflow-hidden shadow-[0px_0px_100px_rgb(161,3,252)_inset_0px_0px_10px_rgb(161,3,252)_0px_0px_5px_rgb(255,255,255)] animate-flicker">
           <input
             className="absolute opacity-0 w-full h-full cursor-pointer"

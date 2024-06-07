@@ -2,25 +2,32 @@ import React, { useContext, useState, useEffect } from "react";
 import { QuizContext } from "../context/QuizContext";
 import Loader from "./Loader";
 import Home from "./Home";
-import ErrorCard from "./ErrorCard"
+import ErrorCard from "./ErrorCard";
+import ScoreCard from "./ScoreCard";
 
 const Quiz = () => {
   
-  const { quizzes, isLoading , error } = useContext(QuizContext);
+  const { quizzes, isLoading ,finish ,setFinish, error } = useContext(QuizContext);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [score ,setScore] = useState(0)
+  const [NumMax, setNumMax] = useState(0)
 
   useEffect(() => {
     setCurrentQuestionIndex(0);
     setSelectedOption(null);
     setIsSubmitted(false);
+    setNumMax(quizzes?.num_questions)
   }, [quizzes]);
 
   const handleSubmit = () => {
     if (!selectedOption) {
       alert("Please select an option before submitting.");
       return;
+    }
+    if(correctAnswer === selectedOption){
+      setScore(score+1)
     }
     setIsSubmitted(true);
   };
@@ -47,6 +54,11 @@ const Quiz = () => {
     }
   };
 
+  const handleFinishButton = () =>{
+    setFinish(true)
+  }
+
+
   if (isLoading) {
     return (
 <Loader />
@@ -55,9 +67,7 @@ const Quiz = () => {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center h-screen ">
         <ErrorCard textError={error}/>
-      </div>
     );
   }
 
@@ -66,19 +76,27 @@ const Quiz = () => {
       <Home/> 
     );
   }  
-  const num_max = quizzes.num_questions;
+
+  if(finish ){
+    return <ScoreCard scoreQuizz={score} max_num={NumMax}/>
+  }
+
+  // const num_max = quizzes?.num_questions ;
   const currentQuestion = quizzes.quiz[currentQuestionIndex];
   const correctAnswer = currentQuestion.answer;
 
-  if (!currentQuestion) {
+  if (!currentQuestion) { 
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="flex flex-col w-full items-center justify-center h-full">
+    <div className="flex flex-col w-full items-center justify-center h-screen">
+      <p>{error}</p>
+
+
       <div className="p-6 text-center w-11/12 md:w-1/2">
         <h2 className="text-xl font-semibold">
-          Question {currentQuestionIndex + 1} - {num_max}
+          Question {currentQuestionIndex + 1} - {NumMax}
         </h2>
         <h3 className="text-xl mt-8 font-normal mb-4">
           {currentQuestion.question}
@@ -152,10 +170,18 @@ const Quiz = () => {
           >
             Confirm
           </button>
- <button
+          {(NumMax === currentQuestionIndex + 1 )?
+          <button
+          className="relative h-12 overflow-hidden rounded-full bg-neutral-950 px-5 py-2.5 text-white transition-all duration-200 hover:bg-blue-900 hover:ring-offset-2 active:ring-2 active:ring-neutral-800"
+          onClick={handleFinishButton}
+        >
+          Finish
+        </button>
+        :
+
+        <button
             className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-neutral-950 font-medium text-neutral-200 hover:bg-green-900 transition-all duration-300 hover:w-32"
             onClick={handleNextQuestion}
-            disabled={currentQuestionIndex === quizzes.quiz.length - 1}
           >
             <div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:-translate-x-3 group-hover:opacity-100">
               Next
@@ -178,6 +204,8 @@ const Quiz = () => {
               </svg>
             </div>
           </button>
+        }
+ 
         </div>
       </div>
     </div>
